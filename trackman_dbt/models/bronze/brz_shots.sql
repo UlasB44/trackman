@@ -1,0 +1,26 @@
+SELECT
+    $1:shot_id::VARCHAR AS shot_id,
+    $1:session_id::VARCHAR AS session_id,
+    $1:player_id::VARCHAR AS player_id,
+    $1:bay_id::VARCHAR AS bay_id,
+    $1:club_id::VARCHAR AS club_id,
+    $1:shot_number::INT AS shot_number,
+    $1:shot_timestamp::TIMESTAMP AS shot_timestamp,
+    $1:shot_date::DATE AS shot_date,
+    $1:ball_speed::FLOAT AS ball_speed,
+    $1:club_speed::FLOAT AS club_speed,
+    $1:smash_factor::FLOAT AS smash_factor,
+    $1:launch_angle::FLOAT AS launch_angle,
+    $1:spin_rate::FLOAT AS spin_rate,
+    $1:spin_axis::FLOAT AS spin_axis,
+    $1:carry_distance::FLOAT AS carry_distance,
+    $1:total_distance::FLOAT AS total_distance,
+    $1:apex_height::FLOAT AS apex_height,
+    $1:attack_angle::FLOAT AS attack_angle,
+    $1:face_angle::FLOAT AS face_angle,
+    $1:club_path::FLOAT AS club_path,
+    $1:face_to_path::FLOAT AS face_to_path,
+    $1:dynamic_loft::FLOAT AS dynamic_loft,
+    $1:lateral_deviation::FLOAT AS lateral_deviation
+FROM @TRACKMAN_DW.PUBLIC.S3_SOURCE/sample_data/facts/fact_shots.parquet
+(FILE_FORMAT => 'TRACKMAN_DW.STAGING.PARQUET_FORMAT')

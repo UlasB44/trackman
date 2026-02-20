@@ -1,0 +1,14 @@
+trackman_dbt:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: SFSEEUROPE-ULAS_AWS_US_WEST_2
+      user: ULAS
+      authenticator: snowflake
+      database: TRACKMAN_DW
+      warehouse: COMPUTE_WH
+      schema: PUBLIC
+      role: SYSADMIN
+      threads: 4
+      client_session_keep_alive: False

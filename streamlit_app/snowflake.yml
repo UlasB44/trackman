@@ -1,0 +1,6 @@
+definition_version: 1
+streamlit:
+  name: trackman_portal
+  main_file: app.py
+  env_file: environment.yml
+  query_warehouse: COMPUTE_WH

@@ -1,0 +1,27 @@
+SELECT
+    $1:scorecard_id::VARCHAR AS scorecard_id,
+    $1:session_id::VARCHAR AS session_id,
+    $1:player_id::VARCHAR AS player_id,
+    $1:player_name::VARCHAR AS player_name,
+    $1:course_id::VARCHAR AS course_id,
+    $1:course_name::VARCHAR AS course_name,
+    $1:tee::VARCHAR AS tee,
+    $1:holes_played::INT AS holes_played,
+    $1:total_strokes::INT AS total_strokes,
+    $1:front_nine::INT AS front_nine,
+    $1:back_nine::INT AS back_nine,
+    $1:total_par::INT AS total_par,
+    $1:score_vs_par::INT AS score_vs_par,
+    $1:gross_score::INT AS gross_score,
+    $1:net_score::INT AS net_score,
+    $1:handicap::FLOAT AS handicap,
+    $1:gir_count::INT AS gir_count,
+    $1:gir_percentage::FLOAT AS gir_percentage,
+    $1:fir_percentage::FLOAT AS fir_percentage,
+    $1:putts_total::INT AS putts_total,
+    $1:putts_per_hole::FLOAT AS putts_per_hole,
+    $1:is_complete::BOOLEAN AS is_complete,
+    $1:round_date::DATE AS round_date,
+    $1:round_datetime::TIMESTAMP AS round_datetime
+FROM @TRACKMAN_DW.PUBLIC.S3_SOURCE/sample_data/facts/fact_scorecards.parquet
+(FILE_FORMAT => 'TRACKMAN_DW.STAGING.PARQUET_FORMAT')

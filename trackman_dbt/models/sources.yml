@@ -1,0 +1,64 @@
+version: 2
+
+sources:
+  - name: s3_source
+    database: TRACKMAN_DW
+    schema: PUBLIC
+    
+    tables:
+      - name: dim_players
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_players.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_courses
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_courses.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_course_holes
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_course_holes.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_clubs
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_clubs.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_facilities
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_facilities.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_bays
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_bays.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_game_types
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_game_types.parquet"
+          file_format: "(type = parquet)"
+      - name: dim_subscription_tiers
+        meta:
+          external_location: "@S3_SOURCE/sample_data/dimensions/dim_subscription_tiers.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_sessions
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_sessions.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_scorecards
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_scorecards.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_hole_scores
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_hole_scores.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_shots
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_shots.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_game_sessions
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_game_sessions.parquet"
+          file_format: "(type = parquet)"
+      - name: fact_bay_bookings
+        meta:
+          external_location: "@S3_SOURCE/sample_data/facts/fact_bay_bookings.parquet"
+          file_format: "(type = parquet)"
