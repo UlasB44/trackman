@@ -1,0 +1,8 @@
+name: streamlit_financial
+channels:
+  - snowflake
+dependencies:
+  - streamlit
+  - snowflake-snowpark-python
+  - pandas
+  - plotly

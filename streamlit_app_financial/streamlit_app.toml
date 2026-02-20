@@ -1,0 +1,6 @@
+[snowflake]
+main_file = "app.py"
+env_file = "environment.yml"
+title = "TrackMan Financial Analytics"
+warehouse = "COMPUTE_WH"
+query_warehouse = "COMPUTE_WH"

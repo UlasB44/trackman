@@ -194,7 +194,7 @@ with tab5:
     
     games = run_query("""
         SELECT GAME_NAME as "Game", SESSIONS_PLAYED as "Sessions", 
-               TOTAL_PLAYERS as "Players", AVG_DURATION as "Avg Duration (min)"
+               TOTAL_PLAYERS as "Players", AVG_DURATION_MINS as "Avg Duration (min)"
         FROM TRACKMAN_DW.GOLD.GLD_GAME_ANALYTICS 
         ORDER BY SESSIONS_PLAYED DESC
     """)

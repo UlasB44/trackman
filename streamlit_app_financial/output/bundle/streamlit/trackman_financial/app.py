@@ -1,0 +1,1 @@
+/Users/ulasbulut/Desktop/CoCo/Trackman/streamlit_app_financial/app.py
