@@ -2,22 +2,36 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from snowflake.snowpark.context import get_active_session
+import snowflake.connector
+import os
 
 st.set_page_config(
     page_title="TrackMan Financial & Marketing",
-    page_icon="📊",
+    page_icon="T",
     layout="wide"
 )
 
-session = get_active_session()
+def get_connection():
+    return snowflake.connector.connect(
+        host=os.environ.get('SNOWFLAKE_HOST'),
+        account=os.environ.get('SNOWFLAKE_ACCOUNT'),
+        token=open('/snowflake/session/token').read(),
+        authenticator='oauth',
+        database='TRACKMAN_DW',
+        schema='GOLD',
+        warehouse='COMPUTE_WH'
+    )
 
+@st.cache_data(ttl=300)
 def run_query(query):
+    conn = get_connection()
     try:
-        return session.sql(query).to_pandas()
+        return pd.read_sql(query, conn)
     except Exception as e:
         st.error(f"Query error: {e}")
         return pd.DataFrame()
+    finally:
+        conn.close()
 
 COLORS = {
     "primary": "#1a1a2e",
