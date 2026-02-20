@@ -75,10 +75,10 @@ with tab1:
     st.markdown("### Key Metrics")
     col1, col2, col3, col4 = st.columns(4)
     
-    sessions_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BRZ_SESSIONS")
-    scorecards_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BRZ_SCORECARDS")
-    players_data = run_query("SELECT COUNT(DISTINCT player_id) as cnt FROM TRACKMAN_DW.BRONZE.BRZ_SESSIONS")
-    shots_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BRZ_SHOTS")
+    sessions_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BASE_SESSIONS")
+    scorecards_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BASE_SCORECARDS")
+    players_data = run_query("SELECT COUNT(DISTINCT player_id) as cnt FROM TRACKMAN_DW.BRONZE.BASE_SESSIONS")
+    shots_data = run_query("SELECT COUNT(*) as cnt FROM TRACKMAN_DW.BRONZE.BASE_SHOTS")
     
     col1.metric("Sessions", f"{sessions_data['CNT'].iloc[0]:,}")
     col2.metric("Scorecards", f"{scorecards_data['CNT'].iloc[0]:,}")
@@ -111,7 +111,7 @@ with tab1:
 with tab2:
     st.markdown("### Scorecard Analysis")
     
-    courses = run_query("SELECT DISTINCT course_name FROM TRACKMAN_DW.BRONZE.BRZ_SCORECARDS ORDER BY 1")
+    courses = run_query("SELECT DISTINCT course_name FROM TRACKMAN_DW.BRONZE.BASE_SCORECARDS ORDER BY 1")
     if not courses.empty:
         selected_course = st.selectbox("Course", courses['COURSE_NAME'].tolist(), label_visibility="collapsed")
         
@@ -120,7 +120,7 @@ with tab2:
                    total_strokes as "Strokes", score_vs_par as "vs Par", 
                    ROUND(gir_percentage, 1) as "GIR %", ROUND(putts_per_hole, 2) as "Putts/Hole",
                    round_date as "Date"
-            FROM TRACKMAN_DW.BRONZE.BRZ_SCORECARDS 
+            FROM TRACKMAN_DW.BRONZE.BASE_SCORECARDS 
             WHERE course_name = '{selected_course}'
             ORDER BY round_date DESC LIMIT 50
         """)
